@@ -35,6 +35,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'crusoexia/vim-monokai'
+Plugin 'kaicataldo/material.vim'
 " ===========================================
 
 " All of your Plugins must be added before the following line
@@ -57,13 +58,20 @@ filetype plugin indent on    " required
 " =========================================================
 set t_Co=256   " This is may or may not needed.
 
+if (has("termguicolors"))
+  set termguicolors
+endif
+
 " Airline theme and configs
-let g:airline_theme='papercolor'
+let g:airline_theme='material'
 let g:airline_powerline_fonts = 1
 
+
+
 " Vim theme
+let g:material_theme_style = 'palenight'
 set background=dark
-colorscheme monokai
+colorscheme material
 
 
 " convert tabs to spaces
