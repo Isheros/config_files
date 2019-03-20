@@ -202,7 +202,7 @@ exec --no-startup-id nm-applet
 bar {
 	modifier $mod
 	tray_padding 0
-	status_command SCRIPT_DIR=~/i3blocks-contrib i3blocks
+	status_command SCRIPT_DIR=~/i3Scripts i3blocks
 	font pango: Inconsolata 10
 	colors {
 		## solarized

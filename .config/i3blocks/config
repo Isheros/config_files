@@ -30,16 +30,16 @@ markup=none
 
 
 [volume]
-command=$SCRIPT_DIR/volume/volumes
+command=$SCRIPT_DIR/volumes
 markup=pango
 interval=once
 signal=10
 
 [battery2]
-command=$SCRIPT_DIR/battery2/battery2
+command=$SCRIPT_DIR/battery2
 markup=pango
 interval=1
 
 [time]
-command=$SCRIPT_DIR/time/times
+command=$SCRIPT_DIR/times
 interval=1
