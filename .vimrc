@@ -40,6 +40,7 @@ Plugin 'kaicataldo/material.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+" python 
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -73,11 +74,16 @@ let g:material_theme_style = 'palenight'
 set background=dark
 colorscheme material
 
+syntax on
 
-" convert tabs to spaces
-set expandtab
-set tabstop=2
-set shiftwidth=2
+set list
+set listchars=tab:>-
+set tabstop=4
+set shiftwidth=4
+set noexpandtab
+set softtabstop=0
+set smarttab
+
 " show relative line numbers
 " set relativenumber
 set number
@@ -85,7 +91,7 @@ set number
 set cursorline
 " do not wrap long lines
 set nowrap
-syntax on
+
 " =========================================================
 " KEYBINDINGS
 " =========================================================
@@ -93,6 +99,9 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-
+noremap <Leader>y "*y
+noremap <Leader>p "*p
+noremap <Leader>Y "+y
+noremap <Leader>P "+p
 set splitbelow
 set splitright

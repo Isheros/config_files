@@ -1,0 +1,38 @@
+#!/usr/bin/env python3
+
+import re
+from subprocess import check_output
+
+vol = check_output(["amixer","get", "Master"]).decode().split()[25]
+vol = re.sub(r'(\[|\]|%)', '', vol)
+
+mute = check_output(["amixer","get", "Master"]).decode().split()[26]
+mute = re.sub(r'(\[|\])', '', mute).lstrip()
+
+#MUTE_I = '\uf6a9'
+MUTE_I = "<span font='FontAwesome'>\uf6a9</span>"
+
+VOL_0 = "<span font='FontAwesome'>\uf026</span>"
+VOL_33 ="<span font='FontAwesome'>\uf027</span>"
+VOL_66 = "<span font='FontAwesome'>\uf028</span>"
+if mute != 'on':
+
+    percent = int(vol)
+    if percent < 33:
+        text = VOL_0 + " " 
+    elif percent < 66:
+        text = VOL_33 + " "
+    else:
+        text = VOL_66 + " "
+
+    form = "<span>{}%</span>"
+    text += form.format(vol)
+    
+else:
+    text = MUTE_I + " "
+    form = '<span>{}</span>'
+    text += form.format("MUTE")
+    
+
+
+print(text)
