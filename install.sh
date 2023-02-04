@@ -1,37 +1,42 @@
 #!/bin/bash
-echo 'Updating Pacman'
-sudo pacman -Sy
+OS=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
 
-echo 'Installing Zsh and oh-my-zsh'
-sudo pacman -S zsh
-sudo pacman -S curl
-chsh -s $(which zsh)
-# Oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+OS=$(echo "$OS" | tr -d '"' )
+case $OS in
+ "Ubuntu")
+ echo 'Updating apt..'
+ sudo apt upgrade -y 
+
+ echo 'Installing zsh and oh-my-zsh'
+ sudo apt install zsh tmux curl wget -y
+
+ echo 'Installing neovim'
+ https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
+ sudo apt install ./nvim-linux64.deb
+ 
+ ;;
+  "Arch")
+  echo 'Updating Pacman'
+  sudo pacman -Sy
+
+  echo 'Installing Zsh and oh-my-zsh'
+  sudo pacman -S zsh
+  sudo pacman -S curl
+#fi
+  ;;
+esac
+# ZSH config
 cp -rv .zshrc ~
 # Material Shell ZSH
-curl -L -o ~/.oh-my-zsh/custom/themes/materialshell.zsh-theme https://raw.githubusercontent.com/carloscuesta/materialshell/master/materialshell.zsh
+curl -L -so ~/.oh-my-zsh/custom/themes/materialshell.zsh-theme https://raw.githubusercontent.com/carloscuesta/materialshell/master/materialshell.zsh
 
-echo 'Installing terminator'
+# Neovim config
+echo 'Copying config..'
+cp -rvf .config ~
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+nvim +PlugInstall
 
-sudo pacman -S terminator
-
-echo 'Installing i3'
-
-sudo pacman -S i3-wm i3blocks dmenu 
-
-echo 'Installing vim'
-
-sudo pacman -S vim
-
-cp -rv .vimrc ~
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
-
-echo 'Copying dotfiles for i3, termninator, ranger, gtk'
-cp -rv .config ~
-
-echo 'Copying dotfiles profile, and Static files'
-cp -rv Static ~
-cp -rv .profile ~
-
+echo "Config zsh"
+chsh -s $(which zsh)
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
