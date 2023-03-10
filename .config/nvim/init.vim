@@ -25,11 +25,9 @@ let g:airline_theme='onehalfdark'
 
 " Other config
 set list
-set listchars=tab:>-
-set tabstop=4
-set shiftwidth=4
-set noexpandtab
-set softtabstop=0
+set tabstop=2
+set shiftwidth=2
+set expandtab
 set smarttab
 
 " show relative line numbers
