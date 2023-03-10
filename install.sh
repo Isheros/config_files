@@ -11,7 +11,7 @@ case $OS in
  sudo apt install zsh tmux curl wget -y
 
  echo 'Installing neovim'
- https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
+ wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
  sudo apt install ./nvim-linux64.deb
  
  ;;
@@ -41,6 +41,6 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 nvim +PlugInstall
 
 echo "Config zsh"
-chsh -s $(which zsh)
+sudo chsh -s $(which zsh)
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
