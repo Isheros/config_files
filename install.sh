@@ -30,6 +30,9 @@ cp -rv .zshrc ~
 # Material Shell ZSH
 curl -L -so ~/.oh-my-zsh/custom/themes/materialshell.zsh-theme https://raw.githubusercontent.com/carloscuesta/materialshell/master/materialshell.zsh
 
+# Highlight
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+
 # Neovim config
 echo 'Copying config..'
 cp -rvf .config ~
@@ -40,3 +43,4 @@ nvim +PlugInstall
 echo "Config zsh"
 chsh -s $(which zsh)
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
