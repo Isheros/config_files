@@ -1,0 +1,6 @@
+Package: neovim
+Version: 0.8.3
+Depends: libc6 (>= 2.29), libgcc-s1 (>= 3.3)
+Architecture: arm64
+Maintainer: Neovim.io
+Description: Vim-fork focused on extensibility and usability. 
