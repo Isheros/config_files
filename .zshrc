@@ -1,5 +1,4 @@
 export ZSH=$HOME/.oh-my-zsh
-export PATH="$PATH:$HOME/miniconda3/bin"
 ZSH_THEME="materialshell"
 
 # Which plugins would you like to load
@@ -7,8 +6,10 @@ ZSH_THEME="materialshell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting kubectx kubectl kube-ps1)
+plugins=(git zsh-syntax-highlighting kubectx kubectl kube-ps1 colorize zsh-interactive-cd fzf)
 
+fpath=($ZSH/custom/completions $fpath)
+#autoload -U compinit && compinit
 source $ZSH/oh-my-zsh.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -31,10 +32,25 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 
 # Example aliases
-alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias spacman="sudo pacman"
+alias k="kubectl"
+alias kubectx="kubectl ctx"
+alias kubens="kubectl ns"
 
+
+export KUBECONFIG=~/.kube/config
 export EDITOR=vim
-export PAGER=more
 
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export PATH="/home/puriin/.local/bin:$PATH"
+
+
+PROMPT='$(kube_ps1)'$PROMPT # or RPROMPT='$(kube_ps1)'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+eval "$(pyenv virtualenv-init -)"
