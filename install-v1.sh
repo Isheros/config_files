@@ -72,8 +72,19 @@ zsh-conf () {
 }
 
 wg-conf () {
-
-}
+   while true; do
+    read -p "Configure Wireguard? [[y]n]" yn
+  
+    case $yn in 
+	    [yY] ) echo "Configuring WireGuard";
+	      (umask 077 && wg genkey > wg-private-client.key)
+        wg pubkey < wg-private-client.key > wg-public-client.key
+	    [nN] ) echo "Downloading from repo...";
+        break;;
+	    * ) echo invalid response;;
+    esac
+  done
+ }
 
 
 other-conf
