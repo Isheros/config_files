@@ -6,10 +6,14 @@ ZSH_THEME="materialshell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
+# FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPS="--extended"
+eval "$(fzf --zsh)"
+
 plugins=(git zsh-syntax-highlighting kubectx kubectl kube-ps1 colorize zsh-interactive-cd fzf)
 
-fpath=($ZSH/custom/completions $fpath)
-#autoload -U compinit && compinit
 source $ZSH/oh-my-zsh.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -37,6 +41,7 @@ alias k="kubectl"
 alias kubectx="kubectl ctx"
 alias kubens="kubectl ns"
 
+ZSH_COLORIZE_STYLE="one-dark"
 
 export KUBECONFIG=~/.kube/config
 export EDITOR=vim
@@ -44,13 +49,14 @@ export EDITOR=vim
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH="/home/puriin/.local/bin:$PATH"
 
+# kube_ps1
+#PROMPT='$(kube_ps1)'$PROMPT # or RPROMPT='$(kube_ps1)'
 
-PROMPT='$(kube_ps1)'$PROMPT # or RPROMPT='$(kube_ps1)'
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
+# Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-
 eval "$(pyenv virtualenv-init -)"
+
+# kubectl autocomplete
+#complete -F --start_kubectl k 
