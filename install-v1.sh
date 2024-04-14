@@ -71,20 +71,20 @@ zsh-conf () {
   wget https://github.com/noo0nee/config_files/raw/master/.zshrc -O ~/.zshrc -O ~/.zshrc
 }
 
-wg-conf () {
-   while true; do
-    read -p "Configure Wireguard? [[y]n]" yn
+# wg-conf () {
+#    while true; do
+#     read -p "Configure Wireguard? [[y]n]" yn
   
-    case $yn in 
-	    [yY] ) echo "Configuring WireGuard";
-	      (umask 077 && wg genkey > wg-private-client.key)
-        wg pubkey < wg-private-client.key > wg-public-client.key
-	    [nN] ) echo "Downloading from repo...";
-        break;;
-	    * ) echo invalid response;;
-    esac
-  done
- }
+#     case $yn in 
+# 	    [yY] ) echo "Configuring WireGuard";
+# 	      (umask 077 && wg genkey > wg-private-client.key)
+#         wg pubkey < wg-private-client.key > wg-public-client.key
+# 	    [nN] ) echo "Downloading from repo...";
+#         break;;
+# 	    * ) echo invalid response;;
+#     esac
+#   done
+#  }
 
 
 other-conf
