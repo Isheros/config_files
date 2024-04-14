@@ -6,7 +6,7 @@ other-conf () {
   # Update and install needed packages
   sudo apt update -y
   sudo apt upgrade -y
-  sudo apt install zsh tmux curl wget gh build-essentials ninja-build gettext cmake net-tools wireguard wireguard-tools -y
+  sudo apt install zsh tmux curl wget gh ninja-build gettext cmake net-tools wireguard wireguard-tools -y
   
   # FZF
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
